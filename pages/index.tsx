@@ -4,12 +4,18 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { client } from "../libs/client";
+import { Blog } from "../types/Blog";
+import { ResponseHeader } from "../types/ResponseHeader";
 
 type Props = {
-  blog: any;
-}
+  blogs: Blog[];
+};
 
-const Home: NextPage<Props> = ({blog}) => {
+type Res = ResponseHeader & {
+  contents: Blog[];
+};
+
+const Home: NextPage<Props> = ({ blogs }) => {
   return (
     <div>
       <Head>
@@ -21,7 +27,7 @@ const Home: NextPage<Props> = ({blog}) => {
       <main>
         <div>
           <ul>
-            {blog.map((blog: any) => (
+            {blogs.map((blog) => (
               <li key={blog.id}>
                 <Link href={`/blog/${blog.id}`}>
                   <a>{blog.title}</a>
@@ -38,11 +44,11 @@ const Home: NextPage<Props> = ({blog}) => {
 export default Home;
 
 export const getStaticProps = async () => {
-  const data: any = await client.get({ endpoint: "blogs" });
+  const data: Res = await client.get({ endpoint: "blogs" });
 
   return {
     props: {
-      blog: data.contents,
+      blogs: data.contents,
     },
   };
 };
