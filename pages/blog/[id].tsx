@@ -1,8 +1,11 @@
+import { InferGetStaticPropsType, GetStaticPropsContext } from 'next';
 import { client } from "../../libs/client";
 import type { NextPage } from "next";
+import { Blog } from "../../types/Blog";
+import { ResponseHeader } from "../../types/ResponseHeader";
 
 type Props = {
-  blog: any;
+  blog: Blog;
 };
 
 const BlogId: NextPage<Props> = ({ blog }) => {
@@ -17,20 +20,23 @@ const BlogId: NextPage<Props> = ({ blog }) => {
       />
     </main>
   );
-};
+}; 
 
 export default BlogId;
 
 export const getStaticPaths = async () => {
-  const data: any = await client.get({ endpoint: "blogs" });
+  const data: ResponseHeader & { contents: Blog[] } = await client.get({
+    endpoint: "blogs",
+  });
 
-  const paths = data.contents.map((content: any) => `/blog/${content.id}`);
+  const paths = data.contents.map((content) => `/blog/${content.id}`);
   return { paths, fallback: false };
 };
 
-export const getStaticProps = async (context: any) => {
-  const id = context.params.id;
-  const data = await client.get({ endpoint: "blogs", contentId: id });
+export const getStaticProps = async (context: GetStaticPropsContext) => {
+  const id = context.params!.id;
+  if(typeof id !== "string") return
+  const data: Blog = await client.get({ endpoint: "blogs", contentId: id });
 
   return {
     props: {
