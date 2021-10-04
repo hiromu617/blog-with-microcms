@@ -2,10 +2,10 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
-import Link from "next/link";
 import { client } from "../libs/client";
 import { Blog } from "../types/Blog";
 import { ResponseHeader } from "../types/ResponseHeader";
+import { BlogCard } from "../components/BlogCard";
 
 type Props = {
   blogs: Blog[];
@@ -30,11 +30,7 @@ const Home: NextPage<Props> = ({ blogs }) => {
         </HeaderContainer>
         <CardContainer>
           {blogs.map((blog) => (
-            <Card key={blog.id}>
-              <Link href={`/blog/${blog.id}`}>
-                <a>{blog.title}</a>
-              </Link>
-            </Card>
+            <BlogCard blog={blog} />
           ))}
         </CardContainer>
       </Container>
@@ -81,10 +77,4 @@ const Headding = styled.h1`
 
 const Caption = styled.p`
   color: #AF9D84;
-`
-
-const Card = styled.div`
-  width: 300px;
-  height: 400px;
-  background-color: white;
 `
