@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import { Blog } from "../types/Blog";
 import Image from "next/image";
+import { parseDate } from "../utils/parseDate";
 
 type Props = {
   blog: Blog;
@@ -21,7 +22,7 @@ export const BlogCard: VFC<Props> = ({ blog }) => {
         <CardContent>
           <CardTitle>{blog.title}</CardTitle>
           <Divider />
-          <CardDate>{blog.createdAt}</CardDate>
+          <CardDate>{parseDate(blog.createdAt)}</CardDate>
         </CardContent>
       </Card>
     </Link>
