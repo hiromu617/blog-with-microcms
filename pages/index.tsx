@@ -31,6 +31,8 @@ const Home: NextPage<Props> = ({ blogs }) => {
           {blogs.map((blog) => (
             <BlogCard blog={blog} />
           ))}
+          <div style={{ width: "300px" }}></div>
+          <div style={{ width: "300px" }}></div>
         </CardContainer>
       </Container>
     </>
@@ -61,19 +63,19 @@ const CardContainer = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 50px 0;
-`
+`;
 const HeaderContainer = styled.div`
   width: 100%;
   text-align: center;
   padding-top: 50px;
-`
+`;
 
 const Headding = styled.h1`
-  color: #AF9D84;
+  color: #af9d84;
   font-weight: bold;
   font-size: 2rem;
-`
+`;
 
 const Caption = styled.p`
-  color: #AF9D84;
-`
+  color: #af9d84;
+`;
