@@ -1,7 +1,9 @@
-import { VFC } from "react";
+import { VFC, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Blog } from "../types/Blog";
+import { Comment } from "../types/Comment";
+import { ResponseHeader } from "../types/ResponseHeader";
 import styled from "styled-components";
 import { parseDate } from "../utils/parseDate";
 
@@ -9,7 +11,25 @@ type Props = {
   blog: Blog;
 };
 
+type Res = ResponseHeader & {
+  contents: Comment[]
+}
+
 export const BlogContent: VFC<Props> = ({ blog }) => {
+  const [comments, setComments] = useState<Comment[]>([])
+
+  useEffect(() => {
+    fetch(`https://jmtyblog.microcms.io/api/v1/comments?filters=blog[equals]${blog.id}`, {
+      headers: {
+        "X-API-KEY": process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY!,
+      },
+    })
+      .then((res) => res.json())
+      .then((data: Res) => {
+        setComments(data.contents)
+      });
+  }, []);
+
   return (
     <>
       <TitleContainer>
@@ -37,6 +57,14 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
           }}
           style={{ lineHeight: "2.5rem" }}
         />
+
+        <h1>コメント</h1>
+        {comments.map((comment) => (
+          <div>
+            <p>{comment.author}</p>
+            <p>{comment.body}</p>
+          </div>
+        ))}
       </Container>
     </>
   );
