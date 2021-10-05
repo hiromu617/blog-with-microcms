@@ -3,6 +3,7 @@ import { client } from "../../libs/client";
 import type { NextPage } from "next";
 import { Blog } from "../../types/Blog";
 import { ResponseHeader } from "../../types/ResponseHeader";
+import { BlogContent } from '../../components/BlogContent';
 
 type Props = {
   blog: Blog;
@@ -10,15 +11,7 @@ type Props = {
 
 const BlogId: NextPage<Props> = ({ blog }) => {
   return (
-    <main>
-      <h1>{blog.title}</h1>
-      <p>{blog.publishedAt}</p>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `${blog.body}`,
-        }}
-      />
-    </main>
+    <BlogContent blog={blog} />
   );
 }; 
 
