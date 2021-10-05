@@ -12,21 +12,24 @@ type Props = {
 };
 
 type Res = ResponseHeader & {
-  contents: Comment[]
-}
+  contents: Comment[];
+};
 
 export const BlogContent: VFC<Props> = ({ blog }) => {
-  const [comments, setComments] = useState<Comment[]>([])
+  const [comments, setComments] = useState<Comment[]>([]);
 
   useEffect(() => {
-    fetch(`https://jmtyblog.microcms.io/api/v1/comments?filters=blog[equals]${blog.id}`, {
-      headers: {
-        "X-API-KEY": process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY!,
-      },
-    })
+    fetch(
+      `https://jmtyblog.microcms.io/api/v1/comments?filters=blog[equals]${blog.id}`,
+      {
+        headers: {
+          "X-API-KEY": process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY!,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data: Res) => {
-        setComments(data.contents)
+        setComments(data.contents);
       });
   }, []);
 
@@ -57,15 +60,19 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
           }}
           style={{ lineHeight: "2.5rem" }}
         />
-
-        <h1>コメント</h1>
-        {comments.map((comment) => (
-          <div>
-            <p>{comment.author}</p>
-            <p>{comment.body}</p>
-          </div>
-        ))}
       </Container>
+      <CommentContainer>
+        <CommentHeading>コメント</CommentHeading>
+        {comments.map((comment) => (
+          <CommentCard>
+            <h3>{comment.author}</h3>
+            <p>{comment.body}</p>
+          </CommentCard>
+        ))}
+        <CommentForm>
+          ここにコメントのフォームを作る
+        </CommentForm>
+      </CommentContainer>
     </>
   );
 };
@@ -76,7 +83,7 @@ const Container = styled.div`
   padding: 50px;
   background-color: #f4f2ee;
   margin-top: 100px;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
   color: #856841;
   position: relative;
   &:before {
@@ -89,6 +96,34 @@ const Container = styled.div`
     font-family: cursive;
     font-weight: lighter;
   }
+`;
+
+const CommentContainer = styled.div`
+  width: 70%;
+  margin: auto;
+  background-color: #f4f2ee;
+  margin-top: 0;
+  margin-bottom: 200px;
+  color: #856841;
+`;
+
+const CommentCard = styled.div`
+  padding: 5px 30px;
+  line-height: 1rem;
+  border-bottom: 1px dotted #856841;
+`;
+
+const CommentHeading = styled.h1`
+  width: 100%;
+  text-align: center;
+  padding: 30px 0;
+  border-bottom: 1px dotted #856841;
+  margin: 0;
+`;
+
+const CommentForm = styled.form`
+  width: 100%;
+  height: 300px;
 `;
 
 const HeaderCotainer = styled.div`
