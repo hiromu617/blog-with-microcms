@@ -1,5 +1,6 @@
 import { VFC } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Blog } from "../types/Blog";
 import styled from "styled-components";
 import { parseDate } from "../utils/parseDate";
@@ -10,26 +11,34 @@ type Props = {
 
 export const BlogContent: VFC<Props> = ({ blog }) => {
   return (
-    <Container>
-      <HeaderCotainer>
-        <Heading>{blog.title}</Heading>
-        <p>{parseDate(blog.publishedAt)}</p>
-      </HeaderCotainer>
-      <ImageContainer>
-        <Image
-          src={blog.thumbnail.url}
-          width={"1000px"}
-          height={"600px"}
-          objectFit="cover"
+    <>
+      <TitleContainer>
+        <Link href="/">
+          <Headding>ブログのタイトル</Headding>
+        </Link>
+        <Caption>ブログの説明</Caption>
+      </TitleContainer>
+      <Container>
+        <HeaderCotainer>
+          <Heading>{blog.title}</Heading>
+          <p>{parseDate(blog.publishedAt)}</p>
+        </HeaderCotainer>
+        <ImageContainer>
+          <Image
+            src={blog.thumbnail.url}
+            width={"1000px"}
+            height={"600px"}
+            objectFit="cover"
+          />
+        </ImageContainer>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: `${blog.body}`,
+          }}
+          style={{ lineHeight: "2.5rem" }}
         />
-      </ImageContainer>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `${blog.body}`,
-        }}
-        style={{ lineHeight: "2.5rem" }}
-      />
-    </Container>
+      </Container>
+    </>
   );
 };
 
@@ -66,4 +75,21 @@ const Heading = styled.h1`
 const ImageContainer = styled.div`
   width: 100%;
   margin: 75px 0;
+`;
+
+const TitleContainer = styled.div`
+  width: 100%;
+  text-align: left;
+  padding-top: 50px;
+  margin-left: 100px;
+`;
+
+const Headding = styled.h1`
+  color: #af9d84;
+  font-weight: bold;
+  font-size: 2rem;
+`;
+
+const Caption = styled.p`
+  color: #af9d84;
 `;

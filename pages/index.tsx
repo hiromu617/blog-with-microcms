@@ -23,10 +23,10 @@ const Home: NextPage<Props> = ({ blogs }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <HeaderContainer>
+        <TitleContainer>
           <Headding>ブログのタイトル</Headding>
           <Caption>ブログの説明</Caption>
-        </HeaderContainer>
+        </TitleContainer>
         <CardContainer>
           {blogs.map((blog) => (
             <BlogCard blog={blog} />
@@ -64,7 +64,7 @@ const CardContainer = styled.div`
   flex-wrap: wrap;
   padding: 50px 0;
 `;
-const HeaderContainer = styled.div`
+const TitleContainer = styled.div`
   width: 100%;
   text-align: center;
   padding-top: 50px;
