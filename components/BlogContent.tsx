@@ -1,10 +1,11 @@
 import { VFC, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import styled from "styled-components";
 import { Blog } from "../types/Blog";
 import { Comment } from "../types/Comment";
 import { ResponseHeader } from "../types/ResponseHeader";
-import styled from "styled-components";
+import { CommentForm } from "./CommentForm";
 import { parseDate } from "../utils/parseDate";
 
 type Props = {
@@ -69,9 +70,7 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
             <p>{comment.body}</p>
           </CommentCard>
         ))}
-        <CommentForm>
-          ここにコメントのフォームを作る
-        </CommentForm>
+        <CommentForm />
       </CommentContainer>
     </>
   );
@@ -121,11 +120,6 @@ const CommentHeading = styled.h1`
   padding: 30px 0;
   border-bottom: 1px dotted #856841;
   margin: 0;
-`;
-
-const CommentForm = styled.form`
-  width: 100%;
-  height: 300px;
 `;
 
 const HeaderCotainer = styled.div`
