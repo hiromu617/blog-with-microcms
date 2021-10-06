@@ -15,8 +15,8 @@ export const CommentForm: VFC<Props> = ({ blogId }) => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm<CommentInputs>();
   const onSubmit: SubmitHandler<CommentInputs> = async (data) => {
     console.log(data);
@@ -32,8 +32,16 @@ export const CommentForm: VFC<Props> = ({ blogId }) => {
         blog: blogId,
       }),
     });
+
     console.log(res);
     console.log(res.status);
+
+    if (res.status === 201) {
+      alert("コメントを投稿しました");
+      reset()
+    } else {
+      alert("エラーが発生しました");
+    }
   };
 
   return (
@@ -64,7 +72,9 @@ export const CommentForm: VFC<Props> = ({ blogId }) => {
           <ErrorMessage>140文字以内で入力してください</ErrorMessage>
         )}
       </FormGroup>
-      <CommentButton type="submit">投稿</CommentButton>
+      <CommentButton type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Loading..." : "投稿する"}
+      </CommentButton>
     </FormContainer>
   );
 };
