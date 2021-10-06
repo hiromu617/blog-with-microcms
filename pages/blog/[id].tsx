@@ -1,4 +1,4 @@
-import { InferGetStaticPropsType, GetStaticPropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
 import { client } from "../../libs/client";
 import type { NextPage } from "next";
 import { Blog } from "../../types/Blog";

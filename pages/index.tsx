@@ -5,16 +5,18 @@ import { client } from "../libs/client";
 import { Blog } from "../types/Blog";
 import { ResponseHeader } from "../types/ResponseHeader";
 import { BlogCard } from "../components/BlogCard";
+import { Pagination } from "../components/Pagination";
 
 type Props = {
   blogs: Blog[];
+  totalCount: number;
 };
 
 type Res = ResponseHeader & {
   contents: Blog[];
 };
 
-const Home: NextPage<Props> = ({ blogs }) => {
+const Home: NextPage<Props> = ({ blogs, totalCount }) => {
   return (
     <>
       <Head>
@@ -34,6 +36,7 @@ const Home: NextPage<Props> = ({ blogs }) => {
           <div style={{ width: "300px" }}></div>
           <div style={{ width: "300px" }}></div>
         </CardContainer>
+        <Pagination totalCount={totalCount} path="blog" />
       </Container>
     </>
   );
@@ -42,11 +45,12 @@ const Home: NextPage<Props> = ({ blogs }) => {
 export default Home;
 
 export const getStaticProps = async () => {
-  const data: Res = await client.get({ endpoint: "blogs" });
+  const data: Res = await client.get({ endpoint: "blogs?offset=0&limit=5" });
 
   return {
     props: {
       blogs: data.contents,
+      totalCount: data.totalCount,
     },
   };
 };
