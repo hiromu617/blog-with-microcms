@@ -1,6 +1,7 @@
 import { VFC } from "react";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useSWRConfig } from 'swr'
 
 type CommentInputs = {
   author: string;
@@ -12,14 +13,15 @@ type Props = {
 };
 
 export const CommentForm: VFC<Props> = ({ blogId }) => {
+  const { mutate } = useSWRConfig()
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<CommentInputs>();
+
   const onSubmit: SubmitHandler<CommentInputs> = async (data) => {
-    console.log(data);
     const res = await fetch("https://jmtyblog.microcms.io/api/v1/comments", {
       method: "POST",
       headers: {
@@ -38,7 +40,10 @@ export const CommentForm: VFC<Props> = ({ blogId }) => {
 
     if (res.status === 201) {
       alert("コメントを投稿しました");
+
+      // フォームをリセットし、コメントを更新する
       reset()
+      mutate(blogId)
     } else {
       alert("エラーが発生しました");
     }
