@@ -7,27 +7,63 @@ type CommentInputs = {
   body: string;
 };
 
-export const CommentForm: VFC = () => {
+type Props = {
+  blogId: string;
+};
+
+export const CommentForm: VFC<Props> = ({ blogId }) => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm<CommentInputs>();
-  const onSubmit: SubmitHandler<CommentInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<CommentInputs> = async (data) => {
+    console.log(data);
+    const res = await fetch("https://jmtyblog.microcms.io/api/v1/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-WRITE-API-KEY": process.env.NEXT_PUBLIC_MICRO_CMS_WRITE_API_KEY!,
+      },
+      body: JSON.stringify({
+        author: data.author,
+        body: data.body,
+        blog: blogId,
+      }),
+    });
+    console.log(res);
+    console.log(res.status);
+  };
 
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)}>
-      <CommentInput
-        type="text"
-        placeholder="お名前"
-        defaultValue="test"
-        {...register("author", { required: true })}
-      />
-      <CommentTextArea
-        placeholder="コメント内容"
-        {...register("body", { required: true })}
-      />
+      <FormGroup>
+        <CommentInput
+          type="text"
+          placeholder="お名前"
+          defaultValue=""
+          {...register("author" as const, { required: true, maxLength: 25 })}
+        />
+        {errors.author?.type === "required" && (
+          <ErrorMessage>この項目は必須です</ErrorMessage>
+        )}
+        {errors.author?.type === "maxLength" && (
+          <ErrorMessage>25文字以内で入力してください</ErrorMessage>
+        )}
+      </FormGroup>
+      <FormGroup>
+        <CommentTextArea
+          placeholder="コメント内容"
+          {...register("body" as const, { required: true, maxLength: 140 })}
+        />
+        {errors.body?.type === "required" && (
+          <ErrorMessage>この項目は必須です</ErrorMessage>
+        )}
+        {errors.body?.type === "maxLength" && (
+          <ErrorMessage>140文字以内で入力してください</ErrorMessage>
+        )}
+      </FormGroup>
       <CommentButton type="submit">投稿</CommentButton>
     </FormContainer>
   );
@@ -46,8 +82,10 @@ const CommentInput = styled.input`
   border: none;
   border-radius: 5px;
   outline: none;
-  color: #a0a0a0;
-  margin-bottom: 20px;
+  color: #856841;
+  ::placeholder {
+    color: gray;
+  }
 `;
 
 const CommentTextArea = styled.textarea`
@@ -58,8 +96,11 @@ const CommentTextArea = styled.textarea`
   border: none;
   border-radius: 5px;
   outline: none;
-  color: #a0a0a0;
-  margin-bottom: 20px;
+  color: #856841;
+  ::placeholder {
+    color: gray;
+    font-weight: normal;
+  }
 `;
 
 const CommentButton = styled.button`
@@ -71,4 +112,13 @@ const CommentButton = styled.button`
   font-size: 1.5rem;
   color: #fff;
   padding: 7px;
+`;
+
+const FormGroup = styled.div`
+  margin-bottom: 20px;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  margin-top: 5px;
 `;

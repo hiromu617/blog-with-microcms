@@ -70,7 +70,7 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
             <p>{comment.body}</p>
           </CommentCard>
         ))}
-        <CommentForm />
+        <CommentForm blogId={blog.id}/>
       </CommentContainer>
     </>
   );
