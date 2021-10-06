@@ -54,6 +54,9 @@ export const getStaticProps = async () => {
 const Container = styled.div`
   width: 80%;
   margin: auto;
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 const CardContainer = styled.div`

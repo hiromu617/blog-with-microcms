@@ -24,6 +24,9 @@ const Card = styled.div`
   padding: 5px 30px;
   line-height: 1rem;
   border-bottom: 1px dotted #856841;
+  @media (max-width: 600px) {
+    padding: 5px 10px;
+  }
 `;
 
 const CommentHeader = styled.div`

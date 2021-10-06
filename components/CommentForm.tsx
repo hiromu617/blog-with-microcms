@@ -52,6 +52,9 @@ export const CommentForm: VFC<Props> = ({ blogId }) => {
 const FormContainer = styled.form`
   width: 100%;
   padding: 50px 30px;
+  @media (max-width: 600px) {
+    padding: 20px 10px;
+  }
 `;
 
 const CommentInput = styled.input`

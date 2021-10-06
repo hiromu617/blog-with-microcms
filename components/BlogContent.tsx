@@ -78,6 +78,10 @@ const Container = styled.div`
     font-family: cursive;
     font-weight: lighter;
   }
+  @media (max-width: 600px) {
+    width: 95%;
+    padding: 10px;
+  }
 `;
 
 const CommentContainer = styled.div`
@@ -87,6 +91,9 @@ const CommentContainer = styled.div`
   margin-top: 0;
   margin-bottom: 200px;
   color: #856841;
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 const CommentHeading = styled.h1`
@@ -96,6 +103,9 @@ const CommentHeading = styled.h1`
   padding: 30px 0;
   border-bottom: 1px dotted #856841;
   margin: 0;
+  @media (max-width: 600px) {
+    padding: 20px;
+  }
 `;
 
 const HeaderCotainer = styled.div`
@@ -110,6 +120,9 @@ const Heading = styled.h1`
 const ImageContainer = styled.div`
   width: 100%;
   margin: 75px 0;
+  @media (max-width: 600px) {
+    margin: 30px 0;
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -118,6 +131,10 @@ const TitleContainer = styled.div`
   padding-top: 50px;
   padding-left: 100px;
   box-sizing: border-box;
+  @media (max-width: 600px) {
+    padding-left: 0px;
+    text-align: center;
+  }
 `;
 
 const Headding = styled.h1`
