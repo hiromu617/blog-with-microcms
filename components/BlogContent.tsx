@@ -65,7 +65,7 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
       <CommentContainer>
         <CommentHeading>コメント</CommentHeading>
         {comments.map((comment) => (
-          <CommentCard>
+          <CommentCard key={comment.id}>
             <h3>{comment.author}</h3>
             <p>{comment.body}</p>
           </CommentCard>

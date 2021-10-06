@@ -29,7 +29,7 @@ const Home: NextPage<Props> = ({ blogs }) => {
         </TitleContainer>
         <CardContainer>
           {blogs.map((blog) => (
-            <BlogCard blog={blog} />
+            <BlogCard key={blog.id} blog={blog} />
           ))}
           <div style={{ width: "300px" }}></div>
           <div style={{ width: "300px" }}></div>

@@ -11,7 +11,7 @@ type Props = {
 
 export const BlogCard: VFC<Props> = ({ blog }) => {
   return (
-    <Link href={`/blog/${blog.id}`} key={blog.id}>
+    <Link href={`/blog/${blog.id}`}>
       <Card>
         <Image
           src={blog.thumbnail.url}

@@ -1,12 +1,34 @@
 import { VFC } from "react";
 import styled from "styled-components";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type CommentInputs = {
+  author: string;
+  body: string;
+};
 
 export const CommentForm: VFC = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<CommentInputs>();
+  const onSubmit: SubmitHandler<CommentInputs> = (data) => console.log(data);
+
   return (
-    <FormContainer>
-      <CommentInput type="text" placeholder="お名前" />
-      <CommentTextArea placeholder="コメント内容" />
-      <CommentButton>投稿</CommentButton>
+    <FormContainer onSubmit={handleSubmit(onSubmit)}>
+      <CommentInput
+        type="text"
+        placeholder="お名前"
+        defaultValue="test"
+        {...register("author", { required: true })}
+      />
+      <CommentTextArea
+        placeholder="コメント内容"
+        {...register("body", { required: true })}
+      />
+      <CommentButton type="submit">投稿</CommentButton>
     </FormContainer>
   );
 };
