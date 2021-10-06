@@ -1,7 +1,8 @@
-import { VFC, useEffect, useState } from "react";
+import { VFC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import useSWR from "swr";
 import { Blog } from "../types/Blog";
 import { Comment } from "../types/Comment";
 import { ResponseHeader } from "../types/ResponseHeader";
@@ -17,23 +18,22 @@ type Res = ResponseHeader & {
   contents: Comment[];
 };
 
-export const BlogContent: VFC<Props> = ({ blog }) => {
-  const [comments, setComments] = useState<Comment[]>([]);
+const commentFetcher = (blogId: string) =>
+  fetch(
+    `https://jmtyblog.microcms.io/api/v1/comments?filters=blog[equals]${blogId}`,
+    {
+      headers: {
+        "X-API-KEY": process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY!,
+      },
+    }
+  )
+    .then((r) => r.json())
+    .then((data: Res) => data.contents);
 
-  useEffect(() => {
-    fetch(
-      `https://jmtyblog.microcms.io/api/v1/comments?filters=blog[equals]${blog.id}`,
-      {
-        headers: {
-          "X-API-KEY": process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY!,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data: Res) => {
-        setComments(data.contents);
-      });
-  }, []);
+export const BlogContent: VFC<Props> = ({ blog }) => {
+  const { data: comments, error } = useSWR(`${blog.id}`, commentFetcher);
+
+  if (error) return <p>An Error Occured!</p>;
 
   return (
     <>
@@ -65,9 +65,11 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
       </Container>
       <CommentContainer>
         <CommentHeading>コメント</CommentHeading>
-        {comments.map((comment) => (
-          <CommentCard key={comment.id} comment={comment}/>
-        ))}
+        {!comments && <p>Loading...</p>}
+        {comments &&
+          comments.map((comment) => (
+            <CommentCard key={comment.id} comment={comment} />
+          ))}
         <CommentForm blogId={blog.id} />
       </CommentContainer>
     </>
