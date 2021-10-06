@@ -81,6 +81,7 @@ const Container = styled.div`
   width: 70%;
   margin: auto;
   padding: 50px;
+  box-sizing: border-box;
   background-color: #f4f2ee;
   margin-top: 100px;
   margin-bottom: 100px;
@@ -114,6 +115,7 @@ const CommentCard = styled.div`
 `;
 
 const CommentHeading = styled.h1`
+  box-sizing: border-box;
   width: 100%;
   text-align: center;
   padding: 30px 0;
@@ -144,7 +146,8 @@ const TitleContainer = styled.div`
   width: 100%;
   text-align: left;
   padding-top: 50px;
-  margin-left: 100px;
+  padding-left: 100px;
+  box-sizing: border-box;
 `;
 
 const Headding = styled.h1`
