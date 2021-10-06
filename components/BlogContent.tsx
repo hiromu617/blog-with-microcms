@@ -2,36 +2,18 @@ import { VFC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
-import useSWR from "swr";
 import { Blog } from "../types/Blog";
-import { Comment } from "../types/Comment";
-import { ResponseHeader } from "../types/ResponseHeader";
 import { CommentForm } from "./CommentForm";
 import { CommentCard } from "./CommentCard";
 import { parseDate } from "../utils/parseDate";
+import { useComments } from "../hooks/useComments";
 
 type Props = {
   blog: Blog;
 };
 
-type Res = ResponseHeader & {
-  contents: Comment[];
-};
-
-const commentFetcher = (blogId: string) =>
-  fetch(
-    `https://jmtyblog.microcms.io/api/v1/comments?filters=blog[equals]${blogId}`,
-    {
-      headers: {
-        "X-API-KEY": process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY!,
-      },
-    }
-  )
-    .then((r) => r.json())
-    .then((data: Res) => data.contents);
-
 export const BlogContent: VFC<Props> = ({ blog }) => {
-  const { data: comments, error } = useSWR(`${blog.id}`, commentFetcher);
+  const { comments, error } = useComments(blog.id);
 
   if (error) return <p>An Error Occured!</p>;
 
