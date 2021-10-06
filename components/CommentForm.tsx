@@ -2,11 +2,6 @@ import { VFC } from "react";
 import styled from "styled-components";
 import { useCommentForm } from "../hooks/useCommentForm";
 
-type CommentInputs = {
-  author: string;
-  body: string;
-};
-
 type Props = {
   blogId: string;
 };
