@@ -6,6 +6,7 @@ import { Blog } from "../types/Blog";
 import { Comment } from "../types/Comment";
 import { ResponseHeader } from "../types/ResponseHeader";
 import { CommentForm } from "./CommentForm";
+import { CommentCard } from "./CommentCard";
 import { parseDate } from "../utils/parseDate";
 
 type Props = {
@@ -65,12 +66,9 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
       <CommentContainer>
         <CommentHeading>コメント</CommentHeading>
         {comments.map((comment) => (
-          <CommentCard key={comment.id}>
-            <h3>{comment.author}</h3>
-            <p>{comment.body}</p>
-          </CommentCard>
+          <CommentCard key={comment.id} comment={comment}/>
         ))}
-        <CommentForm blogId={blog.id}/>
+        <CommentForm blogId={blog.id} />
       </CommentContainer>
     </>
   );
@@ -105,12 +103,6 @@ const CommentContainer = styled.div`
   margin-top: 0;
   margin-bottom: 200px;
   color: #856841;
-`;
-
-const CommentCard = styled.div`
-  padding: 5px 30px;
-  line-height: 1rem;
-  border-bottom: 1px dotted #856841;
 `;
 
 const CommentHeading = styled.h1`
