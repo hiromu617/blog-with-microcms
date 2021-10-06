@@ -1,7 +1,5 @@
 import { VFC } from "react";
 import styled from "styled-components";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useSWRConfig } from "swr";
 import { useCommentForm } from "../hooks/useCommentForm";
 
 type CommentInputs = {
