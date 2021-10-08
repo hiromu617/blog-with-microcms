@@ -60,6 +60,7 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
 
 const Container = styled.div`
   width: 70%;
+  max-width: 1000px;
   margin: auto;
   padding: 50px;
   box-sizing: border-box;
@@ -86,6 +87,7 @@ const Container = styled.div`
 
 const CommentContainer = styled.div`
   width: 70%;
+  max-width: 1000px;
   margin: auto;
   background-color: #f4f2ee;
   margin-top: 0;

@@ -71,6 +71,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
 const Container = styled.div`
   width: 80%;
+  max-width: 1000px;
   margin: auto;
   padding-bottom: 30px;
   @media (max-width: 600px) {
