@@ -2,6 +2,7 @@ import { VFC } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled, {css} from "styled-components";
+import Colors from "../constants/Colors"
 
 type Props = {
   totalCount: number;
@@ -52,7 +53,7 @@ const PaginationListItem = styled.li<PaginationListItemProps>`
   ${(props) =>
     props.active &&
     css`
-      background: #856841;
+      background: ${Colors.MAIN_COLOR};
       color: white;
     `}
 `;

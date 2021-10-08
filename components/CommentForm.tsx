@@ -1,6 +1,7 @@
 import { VFC } from "react";
 import styled from "styled-components";
 import { useCommentForm } from "../hooks/useCommentForm";
+import Colors from "../constants/Colors";
 
 type Props = {
   blogId: string;
@@ -60,7 +61,7 @@ const CommentInput = styled.input`
   border: none;
   border-radius: 5px;
   outline: none;
-  color: #856841;
+  color: ${Colors.MAIN_COLOR};
   ::placeholder {
     color: gray;
   }
@@ -74,7 +75,7 @@ const CommentTextArea = styled.textarea`
   border: none;
   border-radius: 5px;
   outline: none;
-  color: #856841;
+  color: ${Colors.MAIN_COLOR};
   ::placeholder {
     color: gray;
     font-weight: normal;
@@ -85,7 +86,7 @@ const CommentButton = styled.button`
   display: block;
   width: 100%;
   border: none;
-  background-color: #856841;
+  background-color: ${Colors.MAIN_COLOR};
   border-radius: 5px;
   font-size: 1.5rem;
   color: #fff;

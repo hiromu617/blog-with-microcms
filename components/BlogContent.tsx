@@ -7,6 +7,7 @@ import { CommentForm } from "./CommentForm";
 import { CommentCard } from "./CommentCard";
 import { parseDate } from "../utils/parseDate";
 import { useComments } from "../hooks/useComments";
+import Colors from "../constants/Colors";
 
 type Props = {
   blog: Blog;
@@ -64,10 +65,10 @@ const Container = styled.div`
   margin: auto;
   padding: 50px;
   box-sizing: border-box;
-  background-color: #f4f2ee;
+  background-color: ${Colors.CONTAINER_BG_COLOR};
   margin-top: 100px;
   margin-bottom: 100px;
-  color: #856841;
+  color: ${Colors.MAIN_COLOR};
   position: relative;
   &:before {
     content: "Diary";
@@ -75,7 +76,7 @@ const Container = styled.div`
     right: 25px;
     top: -35px;
     font-size: 3rem;
-    color: #f2ac64;
+    color: ${Colors.SUB_COLOR};
     font-family: cursive;
     font-weight: lighter;
   }
@@ -89,10 +90,10 @@ const CommentContainer = styled.div`
   width: 70%;
   max-width: 1000px;
   margin: auto;
-  background-color: #f4f2ee;
+  background-color: ${Colors.CONTAINER_BG_COLOR};
   margin-top: 0;
   margin-bottom: 200px;
-  color: #856841;
+  color: ${Colors.MAIN_COLOR};
   @media (max-width: 600px) {
     width: 95%;
   }
@@ -103,7 +104,7 @@ const CommentHeading = styled.h1`
   width: 100%;
   text-align: center;
   padding: 30px 0;
-  border-bottom: 1px dotted #856841;
+  border-bottom: 1px dotted ${Colors.MAIN_COLOR};
   margin: 0;
   @media (max-width: 600px) {
     padding: 20px;
@@ -140,11 +141,11 @@ const TitleContainer = styled.div`
 `;
 
 const Headding = styled.h1`
-  color: #af9d84;
+  color: ${Colors.TITLE_COLOR};
   font-weight: bold;
   font-size: 2rem;
 `;
 
 const Caption = styled.p`
-  color: #af9d84;
+  color: ${Colors.TITLE_COLOR};
 `;

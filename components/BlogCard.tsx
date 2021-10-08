@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Blog } from "../types/Blog";
 import Image from "next/image";
 import { parseDate } from "../utils/parseDate";
+import Colors from "../constants/Colors";
 
 type Props = {
   blog: Blog;
@@ -32,7 +33,7 @@ export const BlogCard: VFC<Props> = ({ blog }) => {
 const Card = styled.div`
   width: 300px;
   height: 450px;
-  background-color: #eee9e2;
+  background-color: ${Colors.CARD_BG_COLOR};
 `;
 
 const CardContent = styled.div`
@@ -41,17 +42,17 @@ const CardContent = styled.div`
 `;
 
 const CardTitle = styled.p`
-  color: #856841;
+  color: ${Colors.MAIN_COLOR};
   font-weight: bold;
   line-height: 0;
   margin-bottom: 30px;
 `;
 
 const Divider = styled.div`
-  border-top: 1px dotted #856841;
+  border-top: 1px dotted ${Colors.MAIN_COLOR};
 `;
 
 const CardDate = styled.p`
   font-size: 0.75rem;
-  color: #856841;
+  color: ${Colors.MAIN_COLOR};
 `;

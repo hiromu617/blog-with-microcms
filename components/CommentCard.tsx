@@ -2,6 +2,7 @@ import { VFC } from "react";
 import styled from "styled-components";
 import { Comment } from "../types/Comment";
 import { parseDateTime } from "../utils/parseDateTime";
+import Colors from "../constants/Colors";
 
 type Props = {
   comment: Comment;
@@ -23,7 +24,7 @@ export const CommentCard: VFC<Props> = ({ comment }) => {
 const Card = styled.div`
   padding: 5px 30px;
   line-height: 1rem;
-  border-bottom: 1px dotted #856841;
+  border-bottom: 1px dotted ${Colors.MAIN_COLOR};
   @media (max-width: 600px) {
     padding: 5px 10px;
   }
