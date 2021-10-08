@@ -2,6 +2,7 @@ import { VFC } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import Colors from "../constants/Colors";
+import Size from "../constants/Size";
 
 export const BlogTitle: VFC = () => {
   return (
@@ -23,7 +24,7 @@ const TitleContainer = styled.div`
 const Headding = styled.h1`
   color: ${Colors.TITLE_COLOR};
   font-weight: bold;
-  font-size: 2rem;
+  font-size: ${Size.FONT["2XL"]};
 `;
 
 const Caption = styled.p`

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styled, {css} from "styled-components";
 import Colors from "../constants/Colors"
+import Size from "../constants/Size"
 
 type Props = {
   totalCount: number;
@@ -46,7 +47,7 @@ const PaginationListItem = styled.li<PaginationListItemProps>`
   display: inline-block;
   width: 50px;
   height: 50px;
-  font-size: 1.25rem;
+  font-size: ${Size.FONT.LG};
   border-radius: 100%;
   text-align: center;
   line-height: 50px;

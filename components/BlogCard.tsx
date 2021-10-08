@@ -5,6 +5,7 @@ import { Blog } from "../types/Blog";
 import Image from "next/image";
 import { parseDate } from "../utils/parseDate";
 import Colors from "../constants/Colors";
+import Size from "../constants/Size";
 
 type Props = {
   blog: Blog;
@@ -54,6 +55,6 @@ const Divider = styled.div`
 `;
 
 const CardDate = styled.p`
-  font-size: 0.75rem;
+  font-size: ${Size.FONT.SM};
   color: ${Colors.MAIN_COLOR};
 `;

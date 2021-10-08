@@ -8,6 +8,7 @@ import { CommentCard } from "./CommentCard";
 import { parseDate } from "../utils/parseDate";
 import { useComments } from "../hooks/useComments";
 import Colors from "../constants/Colors";
+import Size from "../constants/Size"
 
 type Props = {
   blog: Blog;
@@ -75,7 +76,7 @@ const Container = styled.div`
     position: absolute;
     right: 25px;
     top: -35px;
-    font-size: 3rem;
+    font-size: ${Size.FONT["3XL"]};
     color: ${Colors.SUB_COLOR};
     font-family: cursive;
     font-weight: lighter;
@@ -143,7 +144,7 @@ const TitleContainer = styled.div`
 const Headding = styled.h1`
   color: ${Colors.TITLE_COLOR};
   font-weight: bold;
-  font-size: 2rem;
+  font-size: ${Size.FONT["2XL"]};
 `;
 
 const Caption = styled.p`
