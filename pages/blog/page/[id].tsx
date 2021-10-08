@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
 import { GetStaticPropsContext } from "next";
-import Link from "next/link";
+import styled from "styled-components";
 import { Pagination } from "../../../components/Pagination";
+import { BlogTitle } from "../../../components/BlogTitle";
+import { BlogList } from "../../../components/BlogList";
 import { Blog } from "../../../types/Blog";
 import { ResponseHeader } from "../../../types/ResponseHeader";
 
@@ -18,18 +20,11 @@ type Res = ResponseHeader & {
 
 const BlogPageId: NextPage<Props> = ({ blogs, totalCount }) => {
   return (
-    <div>
-      <ul>
-        {blogs.map((blog) => (
-          <li key={blog.id}>
-            <Link href={`/blog/${blog.id}`}>
-              <a>{blog.title}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <Container>
+      <BlogTitle />
+      <BlogList blogs={blogs} />
       <Pagination totalCount={totalCount} path="blog" />
-    </div>
+    </Container>
   );
 };
 
@@ -58,9 +53,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
   if (typeof id !== "string") return console.log("error");
 
   const data: Res = await fetch(
-    `https://jmtyblog.microcms.io/api/v1/blogs?offset=${
-      (+id - 1) * 5
-    }&limit=5`,
+    `https://jmtyblog.microcms.io/api/v1/blogs?offset=${(+id - 1) * 5}&limit=5`,
     {
       headers: { "X-API-KEY": process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY! },
     }
@@ -75,3 +68,12 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     },
   };
 };
+
+const Container = styled.div`
+  width: 80%;
+  margin: auto;
+  padding-bottom: 30px;
+  @media (max-width: 600px) {
+    width: 95%;
+  }
+`;

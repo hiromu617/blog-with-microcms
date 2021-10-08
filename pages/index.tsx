@@ -4,8 +4,9 @@ import styled from "styled-components";
 import { client } from "../libs/client";
 import { Blog } from "../types/Blog";
 import { ResponseHeader } from "../types/ResponseHeader";
-import { BlogCard } from "../components/BlogCard";
 import { Pagination } from "../components/Pagination";
+import { BlogList } from "../components/BlogList";
+import { BlogTitle } from "../components/BlogTitle";
 
 type Props = {
   blogs: Blog[];
@@ -25,17 +26,8 @@ const Home: NextPage<Props> = ({ blogs, totalCount }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <TitleContainer>
-          <Headding>ブログのタイトル</Headding>
-          <Caption>ブログの説明</Caption>
-        </TitleContainer>
-        <CardContainer>
-          {blogs.map((blog) => (
-            <BlogCard key={blog.id} blog={blog} />
-          ))}
-          <div style={{ width: "300px" }}></div>
-          <div style={{ width: "300px" }}></div>
-        </CardContainer>
+        <BlogTitle />
+        <BlogList blogs={blogs} />
         <Pagination totalCount={totalCount} path="blog" />
       </Container>
     </>
@@ -62,28 +54,4 @@ const Container = styled.div`
   @media (max-width: 600px) {
     width: 95%;
   }
-`;
-
-const CardContainer = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 50px;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding-top: 50px;
-`;
-const TitleContainer = styled.div`
-  width: 100%;
-  text-align: center;
-  padding-top: 50px;
-`;
-
-const Headding = styled.h1`
-  color: #af9d84;
-  font-weight: bold;
-  font-size: 2rem;
-`;
-
-const Caption = styled.p`
-  color: #af9d84;
 `;
