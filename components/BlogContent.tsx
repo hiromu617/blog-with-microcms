@@ -34,6 +34,7 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
         </HeaderCotainer>
         <ImageContainer>
           <Image
+            alt="サムネイル"
             src={blog.thumbnail.url}
             width={"1000px"}
             height={"600px"}
