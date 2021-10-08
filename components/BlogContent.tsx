@@ -21,7 +21,7 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
   return (
     <>
       <TitleContainer>
-        <Link href="/">
+        <Link href="/" passHref>
           <Headding>ブログのタイトル</Headding>
         </Link>
         <Caption>ブログの説明</Caption>

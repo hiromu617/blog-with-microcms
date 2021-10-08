@@ -6,7 +6,7 @@ import Colors from "../constants/Colors";
 export const BlogTitle: VFC = () => {
   return (
     <TitleContainer>
-      <Link href="/">
+      <Link href="/" passHref>
         <Headding>ブログのタイトル</Headding>
       </Link>
       <Caption>ブログの説明</Caption>

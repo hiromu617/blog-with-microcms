@@ -1,13 +1,9 @@
-const MAIN_COLOR = "#856841";
-const SUB_COLOR = "#f2ac64";
-const CARD_BG_COLOR = "#eee9e2";
-const CONTAINER_BG_COLOR = "#f4f2ee";
-const TITLE_COLOR = "#af9d84";
-
-export default {
-  MAIN_COLOR: MAIN_COLOR,
-  SUB_COLOR: SUB_COLOR,
-  CARD_BG_COLOR: CARD_BG_COLOR,
-  CONTAINER_BG_COLOR: CONTAINER_BG_COLOR,
-  TITLE_COLOR: TITLE_COLOR,
+const Colors ={
+  MAIN_COLOR: "#856841",
+  SUB_COLOR: "#f2ac64",
+  CARD_BG_COLOR: "#eee9e2",
+  CONTAINER_BG_COLOR: "#f4f2ee",
+  TITLE_COLOR: "#af9d84",
 };
+
+export default Colors

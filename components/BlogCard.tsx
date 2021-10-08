@@ -12,9 +12,10 @@ type Props = {
 
 export const BlogCard: VFC<Props> = ({ blog }) => {
   return (
-    <Link href={`/blog/${blog.id}`}>
+    <Link href={`/blog/${blog.id}`} passHref>
       <Card>
         <Image
+          alt="サムネイル"
           src={blog.thumbnail.url}
           width={"300px"}
           height={"320px"}
