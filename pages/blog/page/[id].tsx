@@ -37,11 +37,10 @@ export default BlogPageId;
 
 // 動的なページを作成
 export const getStaticPaths = async () => {
-  const res = await fetch("https://jmtyblog.microcms.io//api/v1/blogs", {
+  const res = await fetch("https://jmtyblog.microcms.io/api/v1/blogs", {
     headers: { "X-API-KEY": process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY! },
   });
-  console.log(res)
-  const repos = await res.json();
+  const repos: Res = await res.json();
 
   const range = (start: number, end: number) =>
     [...Array(end - start + 1)].map((_, i) => start + i);
@@ -56,7 +55,7 @@ export const getStaticPaths = async () => {
 // データを取得
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const id = context.params!.id;
-  if (typeof id !== "string") return;
+  if (typeof id !== "string") return console.log("error");
 
   const data: Res = await fetch(
     `https://jmtyblog.microcms.io/api/v1/blogs?offset=${
@@ -68,8 +67,6 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
   )
     .then((res) => res.json())
     .catch(() => null);
-
-    console.log(data)
 
   return {
     props: {

@@ -58,6 +58,7 @@ export const getStaticProps = async () => {
 const Container = styled.div`
   width: 80%;
   margin: auto;
+  padding-bottom: 30px;
   @media (max-width: 600px) {
     width: 95%;
   }
@@ -69,7 +70,7 @@ const CardContainer = styled.div`
   gap: 50px;
   justify-content: space-around;
   flex-wrap: wrap;
-  padding: 50px 0;
+  padding-top: 50px;
 `;
 const TitleContainer = styled.div`
   width: 100%;
