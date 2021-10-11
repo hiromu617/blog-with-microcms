@@ -1,8 +1,8 @@
 import { VFC } from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import Colors from "../constants/Colors";
-import Size from "../constants/Size";
+import { Colors } from "../constants/Colors";
+import { Size } from "../constants/Size";
 
 export const BlogTitle: VFC = () => {
   return (

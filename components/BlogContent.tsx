@@ -8,8 +8,8 @@ import { CommentCard } from "./CommentCard";
 import { Loading } from "./Loading";
 import { parseDate } from "../utils/parseDate";
 import { useComments } from "../hooks/useComments";
-import Colors from "../constants/Colors";
-import Size from "../constants/Size";
+import { Colors } from "../constants/Colors";
+import { Size } from "../constants/Size";
 
 type Props = {
   blog: Blog;

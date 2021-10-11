@@ -2,8 +2,8 @@ import { VFC } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled, { css } from "styled-components";
-import Colors from "../constants/Colors";
-import Size from "../constants/Size";
+import { Colors } from "../constants/Colors";
+import { Size } from "../constants/Size";
 import { genArrayFromRange } from "../utils/genArrayfromRange";
 
 type Props = {
@@ -24,13 +24,15 @@ export const Pagination: VFC<Props> = ({ totalCount, path }) => {
 
   return (
     <PaginationList>
-      {genArrayFromRange(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
-        <PaginationListItem key={index} active={currentPage === number}>
-          <Link href={`/${path}/page/${number}`}>
-            <a>{number}</a>
-          </Link>
-        </PaginationListItem>
-      ))}
+      {genArrayFromRange(1, Math.ceil(totalCount / PER_PAGE)).map(
+        (number, index) => (
+          <PaginationListItem key={index} active={currentPage === number}>
+            <Link href={`/${path}/page/${number}`}>
+              <a>{number}</a>
+            </Link>
+          </PaginationListItem>
+        )
+      )}
     </PaginationList>
   );
 };

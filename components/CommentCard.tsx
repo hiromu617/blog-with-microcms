@@ -2,7 +2,7 @@ import { VFC } from "react";
 import styled from "styled-components";
 import { Comment } from "../types/Comment";
 import { parseDateTime } from "../utils/parseDateTime";
-import Colors from "../constants/Colors";
+import { Colors } from "../constants/Colors";
 
 type Props = {
   comment: Comment;

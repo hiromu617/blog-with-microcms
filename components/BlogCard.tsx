@@ -4,8 +4,8 @@ import Link from "next/link";
 import { Blog } from "../types/Blog";
 import Image from "next/image";
 import { parseDate } from "../utils/parseDate";
-import Colors from "../constants/Colors";
-import Size from "../constants/Size";
+import { Colors } from "../constants/Colors";
+import { Size } from "../constants/Size";
 
 type Props = {
   blog: Blog;

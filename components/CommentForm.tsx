@@ -1,8 +1,8 @@
 import { VFC } from "react";
 import styled from "styled-components";
 import { useCommentForm } from "../hooks/useCommentForm";
-import Colors from "../constants/Colors";
-import Size from "../constants/Size";
+import { Colors } from "../constants/Colors";
+import { Size } from "../constants/Size";
 
 type Props = {
   blogId: string;

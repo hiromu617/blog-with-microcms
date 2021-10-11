@@ -1,12 +1,10 @@
 import { VFC } from "react";
-import styled from "styled-components"
-import Colors from "../constants/Colors"
+import styled from "styled-components";
+import { Colors } from "../constants/Colors";
 
 export const Loading: VFC = () => {
-  return (
-    <Loader />
-  )
-}
+  return <Loader />;
+};
 
 const Loader = styled.div`
   font-size: 10px;

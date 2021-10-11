@@ -1,4 +1,4 @@
-const Size = {
+export const Size = {
   FONT: {
     SM: "0.75rem",
     MD: "1rem",
@@ -8,5 +8,3 @@ const Size = {
     "3XL": "3rem",
   },
 };
-
-export default Size;
