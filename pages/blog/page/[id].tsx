@@ -6,6 +6,7 @@ import { BlogTitle } from "../../../components/BlogTitle";
 import { BlogList } from "../../../components/BlogList";
 import { Blog } from "../../../types/Blog";
 import { ResponseHeader } from "../../../types/ResponseHeader";
+import { genArrayFromRange } from "../../../utils/genArrayfromRange";
 
 const PER_PAGE = 5;
 
@@ -37,10 +38,7 @@ export const getStaticPaths = async () => {
   });
   const repos: Res = await res.json();
 
-  const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i);
-
-  const paths = range(1, Math.ceil(repos.totalCount / PER_PAGE)).map(
+  const paths = genArrayFromRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map(
     (repo) => `/blog/page/${repo}`
   );
 

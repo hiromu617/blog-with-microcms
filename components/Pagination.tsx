@@ -1,9 +1,10 @@
 import { VFC } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styled, {css} from "styled-components";
-import Colors from "../constants/Colors"
-import Size from "../constants/Size"
+import styled, { css } from "styled-components";
+import Colors from "../constants/Colors";
+import Size from "../constants/Size";
+import { genArrayFromRange } from "../utils/genArrayfromRange";
 
 type Props = {
   totalCount: number;
@@ -11,8 +12,8 @@ type Props = {
 };
 
 type PaginationListItemProps = {
-  active: boolean
-}
+  active: boolean;
+};
 
 const PER_PAGE = 5;
 
@@ -20,12 +21,10 @@ export const Pagination: VFC<Props> = ({ totalCount, path }) => {
   const router = useRouter();
   const { id } = router.query;
   const currentPage: number = id ? +id : 1;
-  const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i);
 
   return (
     <PaginationList>
-      {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
+      {genArrayFromRange(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
         <PaginationListItem key={index} active={currentPage === number}>
           <Link href={`/${path}/page/${number}`}>
             <a>{number}</a>
