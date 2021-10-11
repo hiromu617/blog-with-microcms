@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { NextPage, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import styled from "styled-components";
 import { client } from "../libs/client";
@@ -8,10 +8,7 @@ import { Pagination } from "../components/Pagination";
 import { BlogList } from "../components/BlogList";
 import { BlogTitle } from "../components/BlogTitle";
 
-type Props = {
-  blogs: Blog[];
-  totalCount: number;
-};
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 type Res = ResponseHeader & {
   contents: Blog[];

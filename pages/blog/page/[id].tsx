@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { NextPage, InferGetStaticPropsType } from "next";
 import { GetStaticPropsContext } from "next";
 import styled from "styled-components";
 import { Pagination } from "../../../components/Pagination";
@@ -10,14 +10,11 @@ import { genArrayFromRange } from "../../../utils/genArrayfromRange";
 
 const PER_PAGE = 5;
 
-type Props = {
-  blogs: Blog[];
-  totalCount: number;
-};
-
 type Res = ResponseHeader & {
   contents: Blog[];
 };
+
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const BlogPageId: NextPage<Props> = ({ blogs, totalCount }) => {
   return (
@@ -47,8 +44,7 @@ export const getStaticPaths = async () => {
 
 // データを取得
 export const getStaticProps = async (context: GetStaticPropsContext) => {
-  const id = context.params!.id;
-  if (typeof id !== "string") return console.log("error");
+  const id = context.params!.id as string;
 
   const data: Res = await fetch(
     `https://jmtyblog.microcms.io/api/v1/blogs?offset=${(+id - 1) * 5}&limit=5`,
