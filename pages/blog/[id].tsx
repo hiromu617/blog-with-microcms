@@ -1,4 +1,4 @@
-import { GetStaticPropsContext, GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetStaticPropsContext,  GetStaticPaths, InferGetStaticPropsType } from 'next';
 import { client } from "../../libs/client";
 import type { NextPage } from "next";
 import { Blog } from "../../types/Blog";
@@ -15,7 +15,7 @@ const BlogId: NextPage<Props> = ({ blog }) => {
 
 export default BlogId;
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const data: ResponseHeader & { contents: Blog[] } = await client.get({
     endpoint: "blogs",
   });
