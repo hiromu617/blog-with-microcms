@@ -5,10 +5,11 @@ import styled from "styled-components";
 import { Blog } from "../types/Blog";
 import { CommentForm } from "./CommentForm";
 import { CommentCard } from "./CommentCard";
+import { Loading } from "./Loading";
 import { parseDate } from "../utils/parseDate";
 import { useComments } from "../hooks/useComments";
 import Colors from "../constants/Colors";
-import Size from "../constants/Size"
+import Size from "../constants/Size";
 
 type Props = {
   blog: Blog;
@@ -50,7 +51,7 @@ export const BlogContent: VFC<Props> = ({ blog }) => {
       </Container>
       <CommentContainer>
         <CommentHeading>コメント</CommentHeading>
-        {!comments && <p>Loading...</p>}
+        {!comments && <Loading />}
         {comments &&
           comments.map((comment) => (
             <CommentCard key={comment.id} comment={comment} />

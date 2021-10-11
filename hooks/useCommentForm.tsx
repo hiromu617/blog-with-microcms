@@ -20,7 +20,10 @@ export const useCommentForm = (blogId: string) => {
 
   useEffect(() => {
     // cacheがあればフォームの値を更新する
-    reset({ author: cache?.author ? cache.author : "" , body: cache?.body ? cache.body: "" });
+    reset({
+      author: cache?.author ? cache.author : "",
+      body: cache?.body ? cache.body : "",
+    });
   }, []);
 
   useEffect(() => {
@@ -50,7 +53,7 @@ export const useCommentForm = (blogId: string) => {
 
     if (res.status === 201) {
       alert("コメントを投稿しました");
-      
+
       // フォームをリセットし、コメントを更新する
       reset();
       mutate(blogId);
