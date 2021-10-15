@@ -12,6 +12,7 @@ type Props = {
 };
 
 export const BlogCard: VFC<Props> = ({ blog }) => {
+  console.log(blog)
   return (
     <Link href={`/blog/${blog.id}`} passHref>
       <Card>
