@@ -3,14 +3,20 @@ import styled from "styled-components";
 import { useCommentForm } from "../hooks/useCommentForm";
 import { Colors } from "../constants/Colors";
 import { Size } from "../constants/Size";
+import { CommentSubmitButton } from "./CommentSubmitButton";
 
 type Props = {
   blogId: string;
 };
 
 export const CommentForm: VFC<Props> = ({ blogId }) => {
-  const { register, handleSubmit, onSubmit, errors, isSubmitting } =
-    useCommentForm(blogId);
+  const {
+    register,
+    handleSubmit,
+    onSubmit,
+    errors,
+    isSubmitting,
+  } = useCommentForm(blogId);
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)}>
       <FormGroup>
@@ -39,9 +45,7 @@ export const CommentForm: VFC<Props> = ({ blogId }) => {
           <ErrorMessage>140文字以内で入力してください</ErrorMessage>
         )}
       </FormGroup>
-      <CommentButton type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Loading..." : "投稿する"}
-      </CommentButton>
+      <CommentSubmitButton isSubmitting={isSubmitting} />
     </FormContainer>
   );
 };
@@ -81,17 +85,6 @@ const CommentTextArea = styled.textarea`
     color: gray;
     font-weight: normal;
   }
-`;
-
-const CommentButton = styled.button`
-  display: block;
-  width: 100%;
-  border: none;
-  background-color: ${Colors.MAIN_COLOR};
-  border-radius: 5px;
-  font-size: ${Size.FONT.XL};
-  color: #fff;
-  padding: 7px;
 `;
 
 const FormGroup = styled.div`

@@ -1,9 +1,11 @@
 import { CommentCard } from "../components/CommentCard";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { Colors } from "../constants/Colors";
 
 export default {
   component: CommentCard,
   title: "CommentCard",
+  decorators: [story => <div style={{ backgroundColor: Colors.CONTAINER_BG_COLOR }}>{story()}</div>],
 } as ComponentMeta<typeof CommentCard>;
 
 const Template: ComponentStory<typeof CommentCard> = (args) => (
