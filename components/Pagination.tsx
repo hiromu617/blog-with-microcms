@@ -7,11 +7,20 @@ import { Size } from "../constants/Size";
 import { genArrayFromRange } from "../utils/genArrayfromRange";
 
 type Props = {
+  /**
+   * ページの総数
+   */
   totalCount: number;
+  /**
+   * 遷移するリンクのパス/{path}/{page}
+   */
   path: string;
 };
 
 type PaginationListItemProps = {
+  /**
+   * 現在のページかどうか
+   */
   active: boolean;
 };
 

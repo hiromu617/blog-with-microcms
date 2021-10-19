@@ -1,3 +1,6 @@
+/**
+ * BlogのAPIの型定義
+ */
 export type Blog = {
   id: string;
   createdAt: string;

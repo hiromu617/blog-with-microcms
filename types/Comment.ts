@@ -1,5 +1,8 @@
 import { Blog } from "./Blog";
 
+/**
+ * CommentのAPIの型定義
+ */
 export type Comment = {
   id: string;
   createdAt: string;

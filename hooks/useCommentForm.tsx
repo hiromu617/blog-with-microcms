@@ -3,10 +3,22 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import useSWR, { useSWRConfig } from "swr";
 
 type CommentInputs = {
+  /**
+   * コメントの名前
+   */
   author: string;
+  /**
+   * コメントの内容
+   */
   body: string;
 };
 
+/**
+ * [useForm](https://react-hook-form.com/jp/)の戻り値をラップしたカスタムフック。
+ * [useSWR](https://swr.vercel.app/ja)でフォームの値をキャッシュし、マウント時に初期値にセットする
+ * @param blogId 
+ * @returns 
+ */
 export const useCommentForm = (blogId: string) => {
   const { data: cache, error } = useSWR<CommentInputs>(`form-cache-${blogId}`);
   const { mutate } = useSWRConfig();

@@ -18,6 +18,11 @@ const commentFetcher = (blogId: string) =>
     .then((r) => r.json())
     .then((data: Res) => data.contents);
 
+/**
+ * [useSWR](https://swr.vercel.app/ja)でコメントを取得するカスタムフック
+ * @param blogId - 取得するコメントのブログのID
+ * @returns - 取得したコメントの配列とエラーのオブジェクト
+ */
 export const useComments = (blogId: string) => {
   const { data: comments, error } = useSWR(`${blogId}`, commentFetcher);
 
