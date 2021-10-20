@@ -15,7 +15,7 @@ export const BlogList: VFC<Props> = ({ blogs }) => {
   return (
     <CardContainer state={currentUiState}>
       {blogs.map((blog) => (
-        <BlogCard key={blog.id} blog={blog} />
+        <BlogCard key={blog.id} blog={blog} state={currentUiState}/>
       ))}
       <div style={{ width: "300px" }}></div>
       <div style={{ width: "300px" }}></div>
@@ -26,11 +26,13 @@ export const BlogList: VFC<Props> = ({ blogs }) => {
 const CardContainer = styled.div<{ state: "card" | "list" }>`
   width: 100%;
   padding-top: 50px;
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
   ${(props) =>
     props.state === "card" &&
     css`
-      display: flex;
-      gap: 50px;
+      flex-direction: row;
       justify-content: space-around;
       flex-wrap: wrap;
     `}
