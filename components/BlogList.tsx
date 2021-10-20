@@ -1,15 +1,19 @@
 import { VFC } from "react";
 import { Blog } from "../types/Blog";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { BlogCard } from "../components/BlogCard";
+import { useAppSelector } from "../stores";
 
 type Props = {
   blogs: Blog[];
 };
 
 export const BlogList: VFC<Props> = ({ blogs }) => {
+  const currentUiState = useAppSelector((state) => state.uiState.state);
+  console.log(currentUiState);
+
   return (
-    <CardContainer>
+    <CardContainer state={currentUiState}>
       {blogs.map((blog) => (
         <BlogCard key={blog.id} blog={blog} />
       ))}
@@ -19,11 +23,15 @@ export const BlogList: VFC<Props> = ({ blogs }) => {
   );
 };
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<{ state: "card" | "list" }>`
   width: 100%;
-  display: flex;
-  gap: 50px;
-  justify-content: space-around;
-  flex-wrap: wrap;
   padding-top: 50px;
+  ${(props) =>
+    props.state === "card" &&
+    css`
+      display: flex;
+      gap: 50px;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    `}
 `;
