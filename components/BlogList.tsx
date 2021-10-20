@@ -10,7 +10,6 @@ type Props = {
 
 export const BlogList: VFC<Props> = ({ blogs }) => {
   const currentUiState = useAppSelector((state) => state.uiState.state);
-  console.log(currentUiState);
 
   return (
     <CardContainer state={currentUiState}>

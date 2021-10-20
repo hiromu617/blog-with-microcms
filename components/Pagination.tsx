@@ -61,6 +61,7 @@ const PaginationListItem = styled.li<PaginationListItemProps>`
   border-radius: 100%;
   text-align: center;
   line-height: 50px;
+  color: ${Colors.MAIN_COLOR};
   ${(props) =>
     props.active &&
     css`
