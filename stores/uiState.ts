@@ -12,7 +12,7 @@ const slice = createSlice({
   name: "uiState",
   initialState,
   reducers: {
-    toggleUiState: (state, action: PayloadAction<uiState>) => {
+    toggleUiState: (state) => {
       if (state.state === "card") return { state: "list" };
       else return { state: "card" };
     },

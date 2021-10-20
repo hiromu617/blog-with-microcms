@@ -3,6 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { Colors } from "../constants/Colors";
 import { Size } from "../constants/Size";
+import { UiToggleButton } from "./UiToggleButton";
 
 export const BlogTitle: VFC = () => {
   return (
@@ -11,6 +12,7 @@ export const BlogTitle: VFC = () => {
         <Headding>ブログのタイトル</Headding>
       </Link>
       <Caption>ブログの説明</Caption>
+      <UiToggleButton />
     </TitleContainer>
   );
 };
